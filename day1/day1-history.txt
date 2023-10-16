@@ -1,0 +1,73 @@
+unshare --help
+sudo unshare --for --pid --map-root-user --mount-proc bash
+ls /sys/fs/cgroup/
+lsb_release -a
+sudo apt-get install cgroup-tools
+cgcreate --help
+ip a s
+sudo -i
+sudo modeprobe overlay
+sudo modprobe overlay
+sudo modprobe br_netfilter
+sysctl -a | grep bridge
+sysctl -a | grep forward
+vi /etc/sysctl.d/99-kubernetes-cri.conf
+sudo vi /etc/sysctl.d/99-kubernetes-cri.conf
+sudo sysctl --system
+sudo apt0get update
+sudo apt-get update
+sudo apt-get install containerd -y
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+vi /etc/containerd/config.toml
+sudo vi /etc/containerd/config.toml
+sudo systemctl status containerd
+sudo systemctl restart containerd
+swapon -s
+sudo swapoff -a
+swapon -s
+vi /etc/fstab 
+sudo vi /etc/fstab 
+sudo apt-get install apt-transport-https curl -y
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+vi /etc/apt/sources.list/kubernetes.list
+sudo vi /etc/apt/sources.list/kubernetes.list
+sudo -i
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+vi $HOME/.kube/config
+echo "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1UQXhOakV4TlRreU1Gb1hEVE16TVRBeE16RXhOVGt5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTjFJCjB4bUFIMGFqV2JwSlZMdEVVbE9UbzVnQWhMNXZwMGYwYzJCR01BcHBKY0t0Q2UxUGlHbElhMmJYZzlwTEFPT1gKRDkxaktKZ200OHRTRm5jWG85Rk5rNFM2NXJnemlZNCtoanYyMFk5QUordzR0akpsV2tBNDFlS2pOSUhuUlRWYwpSRGxqS1Bydzh5TE1SV0tUb1lDeS9uaVMvNThXVjIyNU83VGNPWCtvT2ROdXFwZGlYcDJqNHd6TSt3RURwR2gyClYzTXE5SGRMVmdpVXdOU0RDSFJTZlozUUpMNGNQZGovSFNNck1qMWlaQjFEbjdzdGNpTlRyQXE0NGtjSlVKUkkKNFIzdTU3MVBOQmZQYXgyYUR2Zk1lai9PT1IxTFdhaU5IakNpV1FYRXhRTkw2ZlFWQXhpMklqQzd4SmoxbHJzMwp3YXEyK2lXNm1ubFNtSzQ1a2VzQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZMcXFpWDBOWUlzWnREVWo2bmFJQ0VGUHl6YVJNQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBTEJVeU1nRzFXNkRLUVFRWnFScApRMElQWmt5cnlVVC8zMEtGRnV4dWZhVlZhNElPN2JzczVvdjN5RDIzY1RnRlg5aGI4a3JMR0RSRjFoV3JhUCtVClEwRlI0S0pMdWpyYXFEQnl2K1Y5T0syaWlGdGRPYlByKzJvaHBvU0ZrTlJSWm9KUWZud09LK3dWN2FVQkErTFUKc3NSeEEvc3JIU2s3SmFCS1NkdFNvOUNiY3VjNjltS0txUVY3RnFNOGdyZlc2Ym9xSmdIc2Y5cE8wV1F3UXBTSgpKZVZIdk1QbHV6MnQ5NndOUWJiUnp0YnFjRjhQUXBJTkl4K0k4Z3oyUmdWS2J5dEhJK3hKdmpCVVNmU0pBaU1xClhGQWdDQnlhaDBSaEpOQzg0eEx0dllxQW5ENkxCdmxuVUJ1bnlmSnExWXVOUmprSFJnd2xnWEFyTjExcWFCR2IKc3NvPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==" | base64 -d
+vi $HOME/.kube/config
+ls -la /etc/kubernetes/pki
+kubectl get nodes
+kubectl get pods --all-namespaces
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+kubectl get pods --all-namespaces
+watch -n1 kubectl get pods --all-namespaces
+kubectl get nodes
+kubectl get pods --all-namespaces
+kubectl get nodes
+watch -n1 kubectl get nodes
+kubeadm token 
+kubeadm token list
+kubeadm token create --help
+kubectl cluster-info
+kubectl get nodes
+kubectl get pods -n kube-system
+kubectl get pods -n kube-system -o wide
+kubeadm join --help
+vi /etc/hosts
+sudo vi /etc/hosts
+sudo apt-get install vim
+sudo vi /etc/hosts
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+git clone https://github.com/mariano-italiano/lfs458-Oct.git
+sudo apt install git
+git clone https://github.com/mariano-italiano/lfs458-Oct.git
+cd lfs458-Oct/
+mkdir day1
+cd day1/
+ls -la
+history
+history | awk '$1 > 5' | cut -c 8- > day1-history.txt
