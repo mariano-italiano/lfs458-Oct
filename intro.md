@@ -22,7 +22,9 @@ tar xvf LFS458_V1.28.1u1_SOLUTIONS.tar
 ------------------------------------------------------
 
 # Logowanie na maszyny labowe:
+
 user: `student`
+
 pass: `linux`
 
 
