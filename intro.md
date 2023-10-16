@@ -11,6 +11,7 @@ Kod: **lfs458-kcme-compendium-cndd-20231016**
 `https://training.linuxfoundation.org/cm/LFS458/`
 
 Username: `LFtraining`
+
 Password: `Penguin2014`
 
 ```
