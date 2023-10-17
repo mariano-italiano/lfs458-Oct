@@ -389,3 +389,64 @@ mkdir lfs458-Oct/day2
 cp -rp day2-yaml/ lfs458-Oct/day2/
 history
 history | awk '$1 > 98' | cut -c 8- > lfs458-Oct/day2/day2-history.txt
+vi lfs458-Oct/day2/day2-history.txt
+ls -la
+cp -rp config-* lfs458-Oct/day2/day2-yaml/
+cp -rp devops-* lfs458-Oct/day2/day2-yaml/
+cp -rp my-svc-acc.yaml lfs458-Oct/day2/day2-yaml/
+cp -rp sa* lfs458-Oct/day2/day2-yaml/
+cp -rp user-request-devops.yaml lfs458-Oct/day2/day2-yaml/
+cd lfs458-Oct/
+git status
+git add .
+git commit -m "Adding day2 files"
+git push
+cd
+vi sidecar-pod.yaml
+kubectl apply -f sidecar-pod.yaml
+kubectl exec -it sidecar-pod -c busybox1 -- /bin/sh
+kubectl exec -it sidecar-pod -c busybox2 -- /bin/sh
+vi sidecar-pod.yaml
+kubectl exec -it sidecar-pod -c sidecar -- /bin/sh
+vi init-pod.yaml
+kubectl apply -f init-pod.yaml
+kubectl get pods
+watch -n1 kubectl get pods
+kubectl apply -f init-pod.yaml
+vi init-pod.yaml
+kubectl delete pod init-pod 
+kubectl apply -f init-pod.yaml
+watch -n1 kubectl get pods
+kubectl delete pod init-pod 
+vi web.yaml
+vi web-svc.yaml
+vi web.yaml
+kubectl apply -f web.yaml
+kubectl get pods
+kubectl logs web
+kubectl logs web -c svc-check
+kubectl get pods
+kubectl apply -f web-svc.yaml 
+watch -n1 kubectl get pods
+kubectl logs web -c svc-check
+vi init-container-lab.yaml
+kubectl apply -f init-container-lab.yaml
+watch -n1 kubectl get pods
+vi init-container-lab.yaml
+kubectl describe pod init-container-lab 
+vi init-container-lab.yaml
+watch -n1 kubectl get pods
+kubectl get pods -o wide
+kubectl exec -it init-container-lab -- /bin/sh
+ls -la
+cp -rp sidecar-pod.yaml lfs458-Oct/day2/day2-yaml/
+cp -rp web.yaml lfs458-Oct/day2/day2-yaml/
+cp -rp web-svc.yaml lfs458-Oct/day2/day2-yaml/
+cp -rp init-* lfs458-Oct/day2/day2-yaml/
+cd lfs458-Oct/
+git add .
+git commit -m "Adding yml files day2"
+git push
+history
+cd 
+history | awk '$1 > 98' | cut -c 8- > lfs458-Oct/day2/day2-history.txt
