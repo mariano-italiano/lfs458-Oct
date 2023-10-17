@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: my-imp-nginx
+  name: my-imp-nginx
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: my-imp-nginx
+    resources: {}

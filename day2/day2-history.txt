@@ -1,0 +1,391 @@
+kubectl get ns
+kubectl get pods etcd
+kubectl get pods etcd --all-namespaces 
+kubectl get pods --all-namespaces 
+kubectl get pods etcd-k8s-master
+kubectl get pods etcd-k8s-master --all-namespaces 
+kubectl get pods etcd-k8s-master -n kube-system 
+kubectl get pods --all-namespaces | grep etcd -i
+kubectl get pods --all-namespaces
+kubectl create namespace dev
+kubectl describe namespaces dev
+vi /etc/kubernetes/manifests/kube-apiserver.yaml 
+sudo vi /etc/kubernetes/manifests/kube-apiserver.yaml 
+kubectl get nodes
+sudo -i 
+sudo vi /etc/kubernetes/manifests/etcd.yaml 
+etcdctl
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ endpoint health
+kubectl -n kube-system exec -it etcd-k8s-master -- sh
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ endpoint health"
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 member list
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 member list -w table"
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 snapshot save /var/lib/etcd/snapshot.db"
+ls -la /var/lib/etcd/
+sudo ls -la /var/lib/etcd/
+sudo ls -lah /var/lib/etcd/
+sudo mv /var/lib/etcd/snapshot.db .
+ls -la
+sudo ls -la /var/lib/etcd/member
+sudo rm -rf /var/lib/etcd/
+kubectl get nodes
+kubectl get pods -n kube-system
+kubectl get nodes
+sudo mkdir /var/lib/etcd -p
+ls -la /var/lib/etcd/
+kubectl get nodes
+etcdctl
+sudo apt  install etcd-client -y
+ETCDCTL_API=3 etcdctl get lcuster.name
+ETCDCTL_API=3 etcdctl get cluster.name
+ETCDCTL_API=3 etcdctl get cluster.name --endpoints=https://127.0.0.1:2379 \\
+ETCDCTL_API=3 etcdctl get cluster.name --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key
+sudo ETCDCTL_API=3 etcdctl get cluster.name --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key
+sudo -i
+sudo ETCDCTL_API=3 etcdctl snapshot restore snapshot.db --initial-cluster etcd-restore=https://192.168.190.40:2380 --initial-advertise-peer-urls https://192.168.190.40:2380 --name etcd-restore --data-dir /var/lib/etcd
+sudo rm -rf /var/lib/etcd
+sudo ETCDCTL_API=3 etcdctl snapshot restore snapshot.db --initial-cluster etcd-restore=https://192.168.190.40:2380 --initial-advertise-peer-urls https://192.168.190.40:2380 --name etcd-restore --data-dir /var/lib/etcd
+sudo ETCDCTL_API=3 etcdctl get cluster.name --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key
+kubectl get nodes
+sudo ETCDCTL_API=3 etcdctl get cluster.name --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key
+kubectl -n kube-system exec -it etcd-restore -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 member list -w table"
+kubectl get pods -n kube-system 
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 member list -w table"
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 get cluster"
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 get cluster".name
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://127.0.0.1:2379 get cluster.name"
+kubectl -n kube-system exec -it etcd-k8s-master -- sh -c "ETCDCTL_API=3 \
+_CACERT=/etc/kubernetes/pki/etcd/ca.crt \
+_CERT=/etc/kubernetes/pki/etcd/server.crt \
+_KEY=/etc/kubernetes/pki/etcd/server.key \
+ --endpoints=https://192.168.190.40:2379 get cluster.name"
+kubectl get pods -n kube-system -o wide
+kubectl drain --help
+kubectl drain k8s-master
+kubectl drain k8s-master --ignore-daemonsets
+kubectl get pods -n kube-system -o wide
+sudo apt-get update
+sudo apt-get install -y --allow-change-held-packages kubeadm=1.28.1-00 
+kubeadm version
+sudo kubeadm upgrade plan v1.28.1
+sudo kubeadm upgrade apply v1.28.1
+sudo apt-get install -y --allow-change-held-packages kubectl=1.28.1-00 kubelet=1.28.1-00
+kubectl get nodes
+sudo systemctl daemon-reload 
+sudo systemctl restart kubelet.service 
+kubectl uncordon k8s-master
+kubectl get nodes
+kubectl get pods -n kube-system
+kubectl drain worker01
+kubectl drain worker01 --ignore-daemonsets
+kubectl get nodes
+kubectl uncordon worker01
+kubectl get nodes
+kubectl api-resources 
+kubectl api-resources |wc -l
+kubectl api-resources 
+less .kube/config 
+grep client-cert .kube/config 
+grep client-cert .kube/config | cut -d " " -f 6
+export client=$(grep client-cert .kube/config | cut -d " " -f 6)
+echo $client 
+export key=$(grep client-key-data .kube/config | cut -d " " -f 6)
+export auth=$(grep certificate-authority-data .kube/config | cut -d " " -f 6)
+echo $client | base64 -d > client.pem
+les client.pem 
+less client.pem 
+echo $key | base64 -d > client-key.pem
+echo $auth | base64 -d > ca.pem
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://master:6443/api/v1/nodes
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/nodes
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/nodes | jq -r '.items[].metadata.name'
+sudo apt  install jq 
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/nodes | jq -r '.items[].metadata.name'
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/nodes | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[0])"'
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/pods
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/ns
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/namespaces
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/namespaces/dev
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/namespaces/kube-system
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/namespaces/kube-system/pods
+curl --cert client.pem --key client-key.pem --cacert ca.pem https://k8s-master:6443/api/v1/namespaces/dev/pods
+vi firstPod.yaml
+kubectl apply -f firstPod.yaml -n dev
+kubectl get pods
+kubectl get pods -n dev
+vi firstPod.yaml 
+kubectl --help
+vi firstPod.yaml 
+kubectl apply -f firstPod.yaml  -n dev
+kubectl delete pod -n dev my-pod 
+kubectl apply -f firstPod.yaml  -n dev
+kubectl get pods -n dev
+vi firstPod.yaml 
+kubectl edit -n dev pod my-pod 
+vi firstPod.yaml 
+kubectl apply -f firstPod.yaml -n dev
+kubectl describe pod -n dev my-pod 
+vi firstPod.yaml 
+kubectl apply -f firstPod.yaml -n dev
+kubectl describe pod -n dev my-pod 
+kubectl get pods -n dev -o wide
+kubectl get pods -n dev -o yaml
+kubectl -n dev get pods -o wide --sort-by .spec.nodeName
+cp firstPod.yaml 
+cp firstPod.yaml nginx.yaml
+vi firstPod.yaml 
+vi nginx.yaml 
+kubectl apply -f nginx.yaml -n dev
+vi nginx.yaml 
+kubectl apply -f nginx.yaml -n dev
+kubectl -n dev get pods -o wide --sort-by .spec.nodeName
+kubectl delete -n dev pod my-pod 
+kubectl -n dev apply -f firstPod.yaml 
+kubectl -n dev get pods -o wide 
+cp firstPod.yaml multi-pod.yaml
+vi multi-pod.yaml 
+kubectl apply -f multi-pod.yaml -n dev
+kubectl -n dev get pods -o wide 
+kubectl -n dev get pods -o wide --sort-by .spec.nodeName
+kubectl -n dev get pods --selector app:web
+kubectl -n dev get pods --selector app=web
+kubectl -n dev get pods --selector app=web2
+kubectl exec -n dev my-pod -- sh
+kubectl exec -n dev -it my-pod -- sh
+kubectl exec -n dev -it my-nginx -- sh
+kubectl exec -n dev -it my-multipod -- sh
+kubectl exec -n dev -it my-multipod -c app-nginx -- sh
+kubectl delete pod my-pod
+kubectl delete pod my-pod -n dev
+kubectl -h
+man kubectl
+kubectl 
+kubectl --v=3 get pods -n dev
+kubectl --v=3 get pods -n dev my-nginx 
+kubectl --v=5 get pods -n dev my-nginx 
+kubectl --v=10 get pods -n dev my-nginx 
+kubectl --v=6 get pods -n dev my-nginx 
+kubectl --v=7 get pods -n dev my-nginx 
+kubectl delete -f *.yaml
+kubectl delete -f mkdir day2-yaml
+mkdir day2-yaml
+mv *.yaml day2-yaml/
+kubectl delete -n dev -f day2-yaml/*.yaml
+kubectl delete -n dev -f day2-yaml/*
+kubectl delete -n dev -f day2-yaml
+kubectl apply -f day2-yaml/
+kubectl get pods
+kubectl delete all
+kubectl delete pod --all
+vi day2-yaml/mk-python.yaml
+kubectl apply -f day2-yaml/mk-python.yaml
+kubectl get pods
+kubectl get pods -o wide
+kubectl exec -it pod -- bash
+ls -la *.yaml
+ls
+cd day2-yaml/
+ls
+kubectl apply -f nginx.yaml 
+kubectl get pods -o wide
+cd ..
+kubectl run my-imp-nginx --image=nginx --restart=never
+kubectl run my-imp-nginx --image=nginx --restart=Never
+kubectl create deployment my-test-dep1 --image=marcinkujawski/python-api:1.0
+kubectl get pods
+kubectl get deploy
+kubectl get pods 
+kubectl get pods my-imp-nginx -o yaml > my-imp-nginx.yaml
+vi my-imp-nginx.yaml
+mv my-imp-nginx.yaml day2-yaml/
+kubectl delete pod --all
+kubectl get pods
+kubectl delete deploy my-test-dep1 
+kubectl get pods
+kubectl run my-imp-nginx --image=nginx --restart=Never --dry-run -o yaml > test-pod.yaml
+vi test-pod.yaml 
+mv test-pod.yaml day2-yaml/
+kubectl config get-contexts 
+kubectl config current-context 
+vi .kube/config 
+kubectl config --help
+man kubectl config
+kubectl config --kubeconfig=config-testuser  set-cluster kubernetes --server=https://192.168.190.40:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt
+vi config-testuser 
+vi .kube/config 
+kubectl config --kubeconfig=config-testuser set-credentials testuser --username=testuser --password=student
+vi config-testuser 
+kubectl config --kubeconfig=config-testuser set-context testuser --cluster=kubernetes --namespace=default --user=testuser
+kubectl config get-contexts 
+useradd testuser
+sudo useradd testuser
+sudo -i
+vi .kube/config 
+kubec get pods
+kubectl apply -f day2-yaml/nginx.yaml 
+kubectl apply -f day2-yaml/my-po
+kubectl apply -f day2-yaml/firstPod.yaml 
+kubectl  get pods
+kubectl annotate pods my-pod description='This is my test pod for nginx aplication'
+kubectl describe pod my-pod
+kubectl annotate pods my-pod app='nginx test'
+kubectl describe pod my-pod
+kubectl annotate --overwrite pod my-pod app='test'
+kubectl describe pod my-pod
+kubectl annotate pod my-pod app-
+kubectl describe pod my-pod
+kubectl annotate pod my-pod description-
+kubectl describe pod my-pod
+kubectl get pods -l app=test-app2
+kubectl get pods -l app=test
+kubectl get pods
+vi day2-yaml/nginx.yaml 
+kubectl get pods -l app=test,app=nginx
+kubectl get pods -l app=test-app2,app=nginx
+kubectl get pods -l app=test-app2
+kubectl get pods -l app=test-app2,app=nginx
+kubectl get pods -l app=nginx
+kubectl edit pod my-pod
+kubectl get pods -l app=test-app2,app=nginx
+kubectl delete pod my-pod
+vi day2-yaml/firstPod.yaml 
+kubectl apply -f day2-yaml/firstPod.yaml
+kubectl get pods -l app=test-app2,app=nginx
+kubectl get pods -l app=test-app2
+kubectl get pods -l app=nginx
+kubectl describe pod my-pod
+vi day2-yaml/firstPod.yaml 
+kubectl apply -f day2-yaml/firstPod.yaml
+kubectl get pods -l env=test,app=nginx
+kubectl get pods -l 'env in(test)'
+kubectl get pods -l 'env in(test),app notin(nginx)'
+kubec get pods
+kubectl get pods
+kubectl edit pod my-nginx 
+kubectl get pods -l 'env in(test),app notin(nginx)'
+kubectl get pods -A
+kubectl get pods -A -l
+kubectl get pods -A --show-labels
+kubectl get pods -l 'component in(kube-scheduler),tier in(control-plane)'
+kubectl get pods -l 'tier in(control-plane)'
+kubectl get pods -l -A 'component in(kube-scheduler),tier in(control-plane)'
+kubectl get pods -A -l 'component in(kube-scheduler),tier in(control-plane)'
+kubectl get pods -A -l 'tier in(control-plane)'
+openssl genrsa -out devops.pem
+openssl req -new -key devops.pem -out devops.csr -subj "/CN=devops"
+cat devops.csr | base64 
+cat devops.csr | base64 | tr -d '\n'
+vi user-request-devops.yaml
+kubectl apply -f user-request-devops.yaml 
+kubectl api-resources 
+kubectl api-resources | grep certifi
+vi user-request-devops.yaml
+kubectl api-resources | grep certifi
+kubectl apply -f user-request-devops.yaml 
+kubectl get csr
+kubectl certificate approve user-request-devops
+kubectl get csr
+kubectl get csr user-request-devops 
+kubectl get csr user-request-devops -o yaml
+echo "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCekNDQWUrZ0F3SUJBZ0lSQU4rdCsvVER4Y0NGUzU5YWNVaThaTzB3RFFZSktvWklodmNOQVFFTEJRQXcKRlRFVE1CRUdBMVVFQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TXpFd01UY3hNalF3TVRoYUZ3MHlOREV3TVRZeApNalF3TVRoYU1CRXhEekFOQmdOVkJBTVRCbVJsZG05d2N6Q0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQCkFEQ0NBUW9DZ2dFQkFMS29mSW9oanZVYXlxOEZLTnp6TDE0ZWluQkxYSHl1L1NPbWhGRzc4NE81SlVBK3llbWIKVDFXMW9WK3RlWHhGTG80Nm1wS2dlMEtMRGFRUW00RFFSZHUxcW1BcWlJRUlKeWpWeHBhbGpPWE9GMldmWkhMbgpwRW5ZOXNOazlUZS8xYmNEd1dnZDBpaEtXaUl4YkFWcFdJSEhtM3doVU1DU1RpZmhkZ3VVbDRHS0R1eHpveEdqCm05ajBkVGIvOTNQZDVMRFhLNkRjRVEyY3diQ3Rqck9ETWZQczBZcS9uMlVVL3dOYnFzako3Wk11YlVqaXZVbUUKdHdaakpDekJLbnltOUhpdHJPc3NhaFRMaXhJVXk1cWtLL3pWSUplbG11aGhGdmE4RmxGL1lCWVoxQWJremhQZApESGRRSzU2UkhHWVlHdTNGNGplYnh5Y2dTb3c1QkpLS0dGc0NBd0VBQWFOV01GUXdEZ1lEVlIwUEFRSC9CQVFECkFnV2dNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01DTUF3R0ExVWRFd0VCL3dRQ01BQXdId1lEVlIwakJCZ3cKRm9BVXVxcUpmUTFnaXhtME5TUHFkb2dJUVUvTE5wRXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRkZIRWphSgpVdkZETDRSaEZsREN3eHRoUERqYVBiSlJhdEF4Y09XSVFaRnI3Z051S0x2b3kxc0lIMiswa2FlRlM0aFZLZUF2ClQ1emFKclhwVXZ0OEgxSlJiVndNbnE3Mno0dnRVOVJjT29UZWNzVGhGeTN2QlZHVVptR1h5S0JaOWNaYitiL1cKZVgwZGVPZWNDN0JLUkkzakUwWWJHVVkxekY1YzVES3ROTXRiVXhvdHNHdTFPOHNmQ25vQkg3c2E1bEZGMVI2agp5Q0hJM0oxQ3RCQjhCVTJ5cms0RndZRWhscXIzZWNwaDkza3R4L1I1MEdQQjEvMzBwSzRYVCtKMTBrTm9tbUdCCmR2dEN3Zm43Z2l6WURaZndCYkhrTnNmaFhoOEMwa1N0L1RtcUtZVGlnR2pOVWZkekpFTndnU3ozUzVEdWJ5K0sKVmprRGxtd0h4b0JUREZFPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==" | base64 -d > devops-user.crt
+kubectl --kubeconfig config-devops config set-cluster kubernetes --insecure-skip-tls-verify=true --server=https://192.168.190.40:6443 
+kubectl --kubeconfig config-devops config set-credentials devops --client-certificate=devops-user.crt --client-key=devops.pem  --embed-certs=true
+kubectl --kubeconfig config-devops config set-context default --cluster=kubernetes --user=devops
+kubectl --kubeconfig config-devops config use-context default
+kubectl config current-context
+mkdir day2-yaml/rbac
+ls -la
+vi day2-yaml/rbac/devops-ns.yaml
+kubectl apply -f day2-yaml/rbac/devops-ns.yaml
+vi devops-role.yaml
+kubectl api-resources | grep rbac
+vi devops-role.yaml
+kubectl apply -f devops-role.yaml
+vi devops-rolebinding.yaml
+kubectl apply -f devops-rolebinding.yaml 
+kubectl --kubeconfig config-devops -n devops-ns get pods
+vi devops-role.yaml 
+vi devops-rolebinding.yaml.yaml 
+vi devops-rolebinding.yaml
+kubectl apply -f day2-yaml/nginx.yaml -n devops-ns
+kubectl --kubeconfig config-devops -n devops-ns get pods
+vi config-devops 
+sudo -i
+vi devops-role.yaml 
+kubectl apply -f devops-role.yaml
+kubectl --kubeconfig config-devops -n devops-ns get pods
+vi devops-role.yaml 
+kubectl --kubeconfig config-devops -n devops-ns get pods
+kubectl apply -f devops-role.yaml
+kubectl --kubeconfig config-devops -n devops-ns get pods
+vi devops-role.yaml 
+kubectl logs pod my-nginx
+kubectl logs pod my-nginx -n devops-ns
+kubectl logs my-nginx -n devops-ns
+vi devops-role.yaml 
+kubectl apply -f devops-role.yaml
+vi my-svc-acc.yaml
+kubectl apply -f my-svc-acc.yaml
+kubectl get sa
+vi sa-pod-reader.yaml
+cp devops-rolebinding.yaml sa-pod-reader.yaml
+vi sa-pod-reader.yaml
+kubectl get -n devops-ns all
+kubectl get -n devops-ns role
+kubectl apply -f sa-pod-reader.yaml 
+kubectl create token my-svc-acc 
+export TOKEN="eyJhbGciOiJSUzI1NiIsImtpZCI6ImtMbmwtNUZ5djR5Sy1mX0RqLVVXdDZwX3FPT19PdVZyRGtMMmo2akNPdGsifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjk3NTUyMzE0LCJpYXQiOjE2OTc1NDg3MTQsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6Im15LXN2Yy1hY2MiLCJ1aWQiOiIzNGRiMjE4My0wM2Q4LTQ2YTUtYTJlOC03OTFhNWFkZGZkN2MifX0sIm5iZiI6MTY5NzU0ODcxNCwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6bXktc3ZjLWFjYyJ9.t6FJmxtq5mynYk66mVe0F1hgeRrgZGq7hZwPmcTdQhmEPIMJCM0wusHsTJ1ZmfVpLcrS5_gVODpjS6JPmUDwJv4Bv3R3Bmh_BKA8YxbZXOEA3LSWMpEExjkL9b2aAURfe0XbOhfPW87ozqD_e-0MPZM3LyxnxY8M9BmqzRgqwZh5CLR4dPAtSpZBgBcfJk6XtAXzBsvXnW3Xwn6Un1U-2M_a2esH7CRZTW3fJXcnKtnNKMqijkIMt6swVlXATTmYyxZzOIujIRpwJxZFVoy6sUMvu49YqMa6ZfVDnPpsnbwraEGm7iaAlAClBTuMpKVRj71pbr8aKm9iNcHP9-l8EQ"
+curl -k -H "Authorization: Bearer $TOKEN" -X GET https://k8s-master:6443/api/v1/namespaces/default/pods
+cp -rp devops-role.yaml sa-pod-reader-role.yaml
+vi sa-pod-reader-role.yaml
+vi sa-pod-reader.yaml 
+kubectl apply -f sa-pod-reader.yaml
+kubectl apply -f sa-pod-reader-role.yaml 
+kubectl apply -f sa-pod-reader.yaml
+kubectl delete -f sa-pod-reader.yaml
+kubectl apply -f sa-pod-reader.yaml
+curl -k -H "Authorization: Bearer $TOKEN" -X GET https://k8s-master:6443/api/v1/namespaces/default/pods
+mkdir lfs458-Oct/day2
+cp -rp day2-yaml/ lfs458-Oct/day2/
+history
+history | awk '$1 > 98' | cut -c 8- > lfs458-Oct/day2/day2-history.txt

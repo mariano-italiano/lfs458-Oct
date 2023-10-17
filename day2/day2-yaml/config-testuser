@@ -1,0 +1,20 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /etc/kubernetes/pki/ca.crt
+    server: https://192.168.190.40:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: testuser
+  name: testuser
+current-context: ""
+kind: Config
+preferences: {}
+users:
+- name: testuser
+  user:
+    password: student
+    username: testuser
