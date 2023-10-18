@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  installVim: "sudo apt get install vim -y"
+  key1: value
+  key2.subkey.moreKey: data
+  key3: |
+    This is my data
+    multiline data
+    inside my configmap
+    named my-configmap
+  config.json: |
+    {"attrib1": "value1"}
+
