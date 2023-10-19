@@ -1,0 +1,399 @@
+kubectl get nodes --show-labels 
+kubectl label nodes worker02 web-services=true
+kubectl get nodes --show-labels 
+cd lfs458-Oct/
+mkdir day4
+cd day4
+mkdir day4-yaml
+cd day4-yaml
+vi web-pod.yaml
+kubec get pods
+kubectl get pods
+kubectl get pods -o wide
+kubectl apply -f web-pod.yaml
+kubectl get pods -o wide
+vi web-deploy.yaml
+kubectl apply -f web-deploy.yaml
+kubectl get pods -o wide
+kubectl label nodes worker02 web-services-
+kubectl get nodes --show-labels 
+kubectl get pods -o wide
+kubectl scale deployment web-deploy --relicas=0
+kubectl scale deployment web-deploy --relicas 0
+kubectl scale deployment web-deploy --replicas 0
+kubectl get pods -o wide
+kubectl scale deployment web-deploy --replicas 3
+kubectl get pods -o wide
+kubectl edit deployments.apps 
+kubectl get pods -o wide
+kubectl taint nodes 
+kubectl taint nodes worker01 env=prod:NoSchedule
+kubectl get nodes 
+kubectl get nodes  -o wide
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[0])"'
+vi noschedule-pod.yaml
+kubec apply -f noschedule-pod.yaml
+kubectl apply -f noschedule-pod.yaml
+kubec get pods
+kubectl get pods
+kubectl get pods -o wide
+vi noschedule-pod.yaml
+kubectl delete pod nginx
+kubectl apply -f noschedule-pod.yaml
+kubectl get pods -o wide
+cp noschedule-pod.yaml noschedule-pod2.yaml 
+vi noschedule-pod2.yaml
+kubectl apply -f noschedule-pod2.yaml
+kubectl get pods -o wide
+kubectl taint nodes worker01 key1=value1:NoExecute
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[0])"'
+kubectl taint nodes worker01 key1=value1:NoSchedule
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[0])"'
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[])"'
+kubectl taint nodes worker01 key1=value1:NoSchedule-
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[])"'
+kubectl get pods -o wide
+kubectl events
+vi with-node-affinity.yaml
+kubectl apply -f with-node-affinity.yaml
+kubectl get pods -o wide
+kubectl get nodes --show-labels 
+kubectl label nodes worker02 env=prod
+kubectl label nodes worker02 county=poland
+kubectl label nodes worker01 county=france
+kubectl get pods -o wide
+kubectl delete pod with-node-affinity 
+kubectl apply -f with-node-affinity.yaml
+kubectl get pods -o wide
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[])"'
+kubectl taint node worker01 env=prod:NoScheulde-
+kubectl taint node worker01 env=prod-
+kubectl taint node worker01 key1=value1:NoExecute-
+kubectl get pods -o wide
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[])"'
+kubectl get pods -o wide
+kubectl delete pod w
+kubectl delete pod with-node-affinity 
+kubectl apply -f with-node-affinity.yaml
+kubectl get pods -o wide
+vi with-node-affinity.yaml 
+kubectl get pods -o wide
+kubectl get nodes  -o json | jq -r '.items[] | "Node name: \(.metadata.name), Taints: \(.spec.taints[0])"'
+kubectl get node --show-
+kubectl get node --show-labels 
+kubectl label nodes worker01 county=france-
+kubectl label nodes worker01 country=france
+kubectl label nodes worker02 country=poland
+kubectl label nodes worker02 country=poland-
+kubectl label nodes worker01 county-
+kubectl label nodes worker02 county-
+kubectl get node --show-labels 
+kubectl get pods -o wide
+kubectl delete pod with-node-affinity 
+vi with-node-affinity.yaml 
+kubectl apply -f with-node-affinity.yaml
+kubectl get pods -o wide
+kubectl label nodes worker02 env-
+kubectl label nodes worker01 env=prod
+kubectl delete pod with-node-affinity 
+kubectl apply -f with-node-affinity.yaml
+kubectl get pods -o wide
+kubectl label nodes worker01 env-
+kubectl label nodes worker01 country-
+kubectl label nodes worker02 country-
+vi dnstest-pod.yaml
+mv dnstest-pods.yaml
+mv dnstest-pod.yaml dnstest-pod.yaml
+mv dnstest-pod.yaml dnstest-pods.yaml
+vi dnstest-pods.yaml
+kubectl apply -f dnstest-pods.yaml
+kubectl get pods -o wide
+kubectl exec busybox-dnstest -- curl 192.168.5.6
+kubectl exec busybox-dnstest -- nslookup 192.168.5.6
+kubectl exec busybox-dnstest -- nslookup 192.168.5.6.default.pod.cluster.local
+kubectl exec busybox-dnstest -- nslookup 192-168-5-6.default.pod.cluster.local
+cd /var/log
+ls -la
+find / -name kube-apiserver.log
+sudo find / -name kube-apiserver.log
+ls -la
+cd containers/
+ls -la
+ls
+cd ../pods/
+ls -l
+cd kube-system_kube-apiserver-k8s-master_f79c39bf6739df431b5c7242caea6d0c
+ls -la
+cd kube-apiserver/
+ls -la
+less 3.log 
+sudo less 3.log 
+cd
+sudo journalctl -u kubelet 
+sudo journalctl -u kubelet -p err
+sudo journalctl  -p err
+sudo journalctl -u containerd
+sudo journalctl -u containerd -p err
+kubectl get pods
+kubectl delete pod noschedule-pod2 
+kubec get pods
+kubectl get pods
+kubectl get pod nginx-pod -o wide
+kubectl get pod nginx-pod -o yaml
+vi simple-multi-pod.yaml
+kubectl apply -f simple-multi-pod.yaml
+kubectl get pods
+kubectl logs simple-multi-pod
+kubectl get pods
+kubectl logs simple-multi-pod
+kubectl logs simple-multi-pod -c nginx
+kubectl events
+kubectl logs simple-multi-pod -c nginx
+kubectl describe pod simple-multi-pod 
+kubectl run ephemeral --image=pause:3.1 
+kubectl exec -it ephemeral -- sh
+kubec get pods
+kubectl get pods
+kubectl delete pod ephemeral 
+kubectl run ephemeral --image=registry.k8s.io/pause:3.1 
+kubectl get pods
+kubectl exec -it ephemeral -- sh
+kubectl exec -it ephemeral -- bash
+kubectl debug -it ephemeral --image=busybox --target=ephemeral
+kubectl debug --help
+kubectl debug -it simple-multi-pod --image=busybox --target=simple-multi-pod
+kubectl debug -it simple-multi-pod --image=busybox --target=simple-multi-pod -c busybox
+kubectl get pods
+kubectl debug -it nginx-pod  --image=busybox --target=nginx-pod
+kubectl debug -it nginx-pod  --image=busybox --target=ephemeral
+kubectl debug -it ephemeral --image=busybox --target=ephemeral
+kubectl debug -it simple-multi-pod --image=busybox --target=nginx
+sudo systemctl status kubelet.service 
+sudo vi /etc/kubernetes/
+sudo vi /etc/kubernetes/manifests/
+wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+vi components.yaml 
+kubectl apply -f components.yaml
+kubec get pods -n kube-system
+kubectl get pods -n kube-system
+watch -n1 kubectl get pods -n kube-system
+kubectl top nodes
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+kubectl -n kubernetes-dashboard get pods
+cd lfs458-Oct/day4/day4-yaml/
+vi admin-user.yaml
+kubectl apply -f admin-user.yaml
+kubectl get clusterrolebindings.rbac.authorization.k8s.io 
+kubectl get clusterrolebindings.rbac.authorization.k8s.io cluster-admin 
+kubectl get clusterrolebindings.rbac.authorization.k8s.io cluster-admin -o yaml
+vi admin-user-rolebinding.yaml
+kubectl apply -f admin-user-rolebinding.yaml
+vi admin-user-rolebinding.yaml
+kubectl apply -f admin-user-rolebinding.yaml
+vi admin-user-rolebinding.yaml
+kubectl apply -f admin-user-rolebinding.yaml
+vi admin-user-rolebinding.yaml
+kubectl apply -f admin-user-rolebinding.yaml
+kubectl -n kubernetes-dashboard create token admin-user
+export admin-user-token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImtMbmwtNUZ5djR5Sy1mX0RqLVVXdDZwX3FPT19PdVZyRGtMMmo2akNPdGsifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjk3NzEwNTU5LCJpYXQiOjE2OTc3MDY5NTksImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiOTQ0OWJiY2UtMjY3My00ZmU4LWJlNmEtNmE1OWU4ZjZmM2I3In19LCJuYmYiOjE2OTc3MDY5NTksInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.s4ACneO5hL2OqNdllAe877fVXC3gqRp5fo23ayXuW4GthOehDJ5ywXQCJx_ewN2QcUXUbaP9US6daXr-3FDqrf07ot3-DzRuj2zvuAydsaqyPBDLLTdzvECqvxIr3XoARLHpew__gnN1Hu0nD8KMegg3lFxWapgwrQhYzHm8UcCbo_oyv0L1p_QwwcXmf_SUhwwzl-mDUwL_iVDuWK-2MgwSvDs8dwbR10L8udp06hB2HN1NIZcBHFUXtuW0zCRKGAgE8AluQS8wvEjZy1BRhbJqn_D75Obb0Ny9OX5LLNmh0KkoP6nn9RpclJiW3BVqmFa_eupOZKRK0xr4hcZkNQ
+export admin-user-token="eyJhbGciOiJSUzI1NiIsImtpZCI6ImtMbmwtNUZ5djR5Sy1mX0RqLVVXdDZwX3FPT19PdVZyRGtMMmo2akNPdGsifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjk3NzEwNTU5LCJpYXQiOjE2OTc3MDY5NTksImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiOTQ0OWJiY2UtMjY3My00ZmU4LWJlNmEtNmE1OWU4ZjZmM2I3In19LCJuYmYiOjE2OTc3MDY5NTksInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.s4ACneO5hL2OqNdllAe877fVXC3gqRp5fo23ayXuW4GthOehDJ5ywXQCJx_ewN2QcUXUbaP9US6daXr-3FDqrf07ot3-DzRuj2zvuAydsaqyPBDLLTdzvECqvxIr3XoARLHpew__gnN1Hu0nD8KMegg3lFxWapgwrQhYzHm8UcCbo_oyv0L1p_QwwcXmf_SUhwwzl-mDUwL_iVDuWK-2MgwSvDs8dwbR10L8udp06hB2HN1NIZcBHFUXtuW0zCRKGAgE8AluQS8wvEjZy1BRhbJqn_D75Obb0Ny9OX5LLNmh0KkoP6nn9RpclJiW3BVqmFa_eupOZKRK0xr4hcZkNQ"
+kubectl get svc -n kubernetes-dashboard 
+kubectl edit svc -n kubernetes-dashboard kubernetes-dashboard 
+kubectl get svc -n kubernetes-dashboard 
+kubectl edit svc -n kubernetes-dashboard kubernetes-dashboard 
+kubectl get svc -n kubernetes-dashboard 
+kubectl edit svc -n kubernetes-dashboard kubernetes-dashboard 
+kubectl proxy
+vi pi-job.yaml
+kubectl apply -f pi-job.yaml
+kubectl get jobs.batch 
+kubectl get jobs.batch -o wide
+vi sleep-job.yaml
+kubectl apply -f sleep-job.yaml
+kubectl get jobs.batch 
+watch -n1 kubectl get jobs.batch 
+vi parallel-job.yaml
+kubectl apply -f parallel-job.yaml
+watch -n1 kubectl get jobs.batch 
+kubectl get pods
+watch -n1 kubectl get jobs.batch 
+kubectl get pods
+kubectl delete jobs.batch parallel-job 
+kubectl get pods
+vi sleep-job.yaml
+vi parallel-job.yaml
+kubectl apply  -f parallel-job.yaml
+kubectl get pods
+kubectl get jobs
+watch -n1 kubectl get pods
+vi hello-cronjob.yaml
+kubectl apply -f hello-cronjob.yaml
+kubectl get jobs
+kubectl get cronjobs.batch 
+watch -n1 kubectl get pods
+kubectl log hello-cronjob-28295180-pqbr9
+kubectl logs hello-cronjob-28295180-pqbr9
+watch -n1 kubectl get pods
+kubectl delete cronjobs.batch hello-cronjob 
+watch -n1 kubectl get pods
+vi dbconnection-crd.yaml
+kubectl apply -f dbconnection-crd.yaml
+vi dbconnection-crd.yaml
+kubectl apply -f dbconnection-crd.yaml
+kubectl api-resources | grep -i dbcon
+vi db1-crd.yaml
+kubectl apply -f db1-crd.yaml
+kubectl get dbconn
+kubectl describe dbconn
+wget https://get.helm.sh/helm-v3.11.0-linux-amd64.tar.gz
+tar -xvf helm-v3.11.0-linux-amd64.tar.gz
+sudo cp linux-amd64/helm /usr/local/bin/helm
+helm version
+sudo apt-get install helm
+helm repo -h
+helm repo list
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo list
+helm search repo bitnami/mariadb
+helm search repo bitnami/nginx
+helm install bitnami/nginx 
+helm install bitnami/nginx --generate-name
+kubectl get pod
+kubectl get dpeloy
+kubectl get deploy
+kubectl get svc --namespace default -w nginx-1697717427
+helm install bitnami/nginx web1
+helm install bitnami/nginx -n web1
+helm install bitnami/nginx --name web1
+helm install bitnami/nginx -h
+helm install web1 bitnami/nginx 
+helm list
+kubectl get deploy
+kubectl get svc web1-nginx -o jsonpath='{.spec.ports[0].nodePort}'
+kubectl get svc web1-nginx -o jsonpath='{.spec.ports[0].nodePort}';echo -e "\n"
+helm install web1 bitnami/nginx:1.14.2 
+helm install web2 bitnami/nginx:1.14.2 
+helm install web2 bitnami/nginx-1.14.2 
+helm search repo bitnami/nginx --versions
+helm install web2 bitnami/nginx --version 15.0.0
+helm list
+helm delete nginx-1697717427
+helm upgrade web2 bitnami/nginx --version 15.1.0
+helm list
+helm search hub wordpress
+helm install happy-panda wordpress
+helm install happy-panda bitnami/wordpress
+kubectl get svc --namespace default -w happy-panda-wordpress
+kubectl show values bitnami/wordpress
+helm show values bitnami/wordpress
+helm show values bitnami/wordpress | grep -v "#"
+helm list
+helm uninstall happy-panda
+helm install happy-panda bitnami/wordpress -h
+helm install happy-panda bitnami/wordpress -n happy-dev
+kubectl create ns happy-dev
+helm install happy-panda bitnami/wordpress -n happy-dev
+kubectl get all -n happy-dev 
+helm create myhelmchart
+ls -la
+cd myhelmchart
+ls -la
+tree
+vi Chart.yaml 
+vi values.yaml 
+vi templates/service.yaml 
+vi values.yaml 
+vi Chart.yaml 
+vi templates/service.yaml 
+vi /tmp/index.html
+kubectl create configmap nginx-html-configmap --from-file /tmp/index.html 
+vi templates/deployment.yaml 
+vi values.yaml 
+cd ..
+helm lint myhelmchart/
+helm package myhelmchart --version 0.1
+helm install nginx-my-helm myhelmchart-0.1.tgz 
+kubectl get configmaps 
+vi myhelmchart/templates/deployment.yaml 
+kubectl get configmaps nginx-html-configmap -o yaml > myhelmchart/templates/configmap.yaml
+vi myhelmchart/templates/configmap.yaml
+helm list
+helm uninstall web1
+helm uninstall web2
+helm uninstall noschedule-pod
+helm uninstall nginx-my-helm
+rm myhelmchart-0.1.tgz 
+helm package myhelmchart --version 0.1
+helm install nginx-my-helm myhelmchart-0.1.tgz 
+kubectl delete configmaps nginx-html-configmap 
+helm list
+helm install nginx-my-helm myhelmchart-0.1.tgz 
+vi myhelmchart/templates/deployment.yaml 
+helm list
+helm uninstall nginx-my-helm
+rm myhelmchart-0.1.tgz 
+helm package myhelmchart --version 0.1
+helm install nginx-my-helm myhelmchart-0.1.tgz 
+vi myhelmchart/templates/NOTES.txt 
+kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services nginx-my-helm-myhelmchart
+curl -v http://localhost:30080
+helm --help
+vi myhelmchart/templates/configmap.yaml 
+helm package myhelmchart --version 0.2
+helm upgrade nginx-my-helm myhelmchart-0.2.tgz
+vi myhelmchart/templates/configmap.yaml 
+helm upgrade nginx-my-helm myhelmchart-0.2.tgz
+vi myhelmchart/templates/configmap.yaml 
+vi /tmp/index.html 
+kubectl create configmap cm1 --dry-run -o yaml
+kubectl create configmap cm1 --from-file /tmp/index.html --dry-run -o yaml
+vi myhelmchart/templates/configmap.yaml 
+helm upgrade nginx-my-helm myhelmchart-0.2.tgz
+vi myhelmchart/templates/configmap.yaml 
+kubectl create configmap nginx-html-configmap --from-file /tmp/index.html --dry-run -o yaml > myhelmchart/templates/configmap.yaml 
+vi myhelmchart/templates/configmap.yaml
+helm package myhelmchart --version 0.2
+helm upgrade nginx-my-helm myhelmchart-0.2.tgz
+kubectl edit deployments.apps nginx-my-helm-myhelmchart 
+helm list
+helm uninstall nginx-my-helm
+helm install nginx-my-helm myhelmchart-0.2.tgz 
+kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services nginx-my-helm-myhelmchart
+vi hpa-deployment.yaml
+kubectl apply -f hpa-deployment.yaml
+kubectl get deployments.apps,pods
+kubectl autoscale deployment hpa-deployment --min 1 --max 8 --cpu-percent 60
+vi load-generator.yaml
+kubectl apply -f load-generator.yaml
+kubectl top
+kubectl top nodes
+watch -n1 kubectl get hpa hpa-deployment 
+kubectl get pods
+watch -n1 kubectl get hpa hpa-deployment 
+kubectl get pods
+kubectl get deployments.apps hpa-deployment 
+kubectl delete -f load-generator.yaml 
+kubectl top nodes
+watch -n1 kubectl get hpa hpa-deployment 
+kubectl create ns np-test
+kubectl label namespaces np-test team=tmobile
+vi np-nginx.yaml
+vi np-busybox.yaml
+kubectl apply -f np-nginx.yaml 
+kubectl apply -f np-busybox.yaml 
+kubectl get pods -o wide
+kubectl get pods -o wide -n np-test
+kubectl exec -n np-test np-busybox -- curl 192.168.5.46
+vi my-networkpolicy.yaml
+kubectl apply -f my-networkpolicy.yaml
+kubectl exec -n np-test np-busybox -- curl 192.168.5.46
+kubectl edit -n np-test networkpolicies my-networkpolicy 
+kubectl exec -n np-test np-busybox -- curl 192.168.5.46
+kubectl edit -n np-test networkpolicies my-networkpolicy 
+kubectl exec -n np-test np-busybox -- curl 192.168.5.46
+kubectl edit -n np-test networkpolicies my-networkpolicy 
+kubectl exec -n np-test np-busybox -- curl 192.168.5.46
+kubectl edit -n np-test networkpolicies my-networkpolicy 
+tail ../../day3/day3-history.txt 
+history
+history | awk '$1 > 953' | cut -c 8- > ../day4-history.txt

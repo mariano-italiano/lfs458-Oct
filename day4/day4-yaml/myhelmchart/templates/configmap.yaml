@@ -1,0 +1,45 @@
+apiVersion: v1
+data:
+  index.html: |+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fancy Page</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f0f0f0;
+                text-align: center;
+            }
+            h1 {
+                color: #336699;
+                font-size: 36px;
+            }
+            p {
+                font-size: 18px;
+            }
+            .fancy-box {
+                border: 2px solid #336699;
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 10px;
+                margin: 20px auto;
+                width: 80%;
+                box-shadow: 5px 5px 10px #888888;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to the Fancy Page</h1>
+        <div class="fancy-box">
+            <p>This is a beautifully designed and fancy web page with some awesome content.</p>
+            <p>Feel free to add your own content and make it even fancier!</p>
+        </div>
+        <p>Thanks for visiting our fancy page.</p>
+    </body>
+    </html>
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx-html-configmap

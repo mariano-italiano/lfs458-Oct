@@ -1,0 +1,23 @@
+apiVersion: my.crds/v1
+kind: DbConnection
+metadata:
+  name: db1-crd
+spec:
+  dbType: postgres
+  defaultSchema: test-database
+  capacityGb: 100
+  configMapRef: postgres-configmap
+  rootUser: root
+  rootPassword: S3cureP@ss!
+---
+apiVersion: my.crds/v1
+kind: DbConnection
+metadata:
+  name: db2-crd
+spec:
+  dbType: mysql
+  defaultSchema: app-database
+  capacityGb: 80
+  configMapRef: mysql-configmap
+  rootUser: root
+  rootPassword: P@ssW0rd123
